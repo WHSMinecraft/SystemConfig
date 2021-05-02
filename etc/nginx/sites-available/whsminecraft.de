@@ -1,0 +1,42 @@
+# This is the main and public website of the server
+
+server {
+	server_name www.whsminecraft.de;
+	return 301 $scheme://whsminecraft.de$request_uri;
+}
+
+server {
+	server_name whsminecraft.de;
+
+	listen [::]:80;
+	listen 80;
+
+	return 301 https://$host$request_uri;
+}
+
+
+server {
+	server_name whsminecraft.de;
+
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+
+	# SSL configuration
+	#
+	# Note: You should disable gzip for SSL traffic.
+	# See: https://bugs.debian.org/773332
+
+	ssl_certificate /etc/letsencrypt/live/*.whsminecraft.de/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/*.whsminecraft.de/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+	# root /home/whsminecraft/WebServerRoot/;
+	index index.html index.htm;
+
+	location / {
+		root /srv/http/whsminecraft.de;
+		try_files $uri $uri/ =404;
+	}
+}

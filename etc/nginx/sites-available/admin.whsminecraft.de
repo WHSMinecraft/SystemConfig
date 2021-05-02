@@ -1,0 +1,29 @@
+# This subdomain is currently simply proxying the plan-player-analytics web server on port 8804
+
+server {
+	server_name admin.whsminecraft.de;
+
+	listen [::]:80;
+	listen 80;
+
+	return 301 https://$host$request_uri;
+}
+
+
+server {
+	server_name admin.whsminecraft.de;
+
+	listen 443 ssl;
+	listen [::]:443 ssl;
+
+	ssl_certificate /etc/letsencrypt/live/*.whsminecraft.de/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/*.whsminecraft.de/privkey.pem;
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+	location / {
+		proxy_pass http://127.0.0.1:8804;
+		proxy_set_header   X-Forwarded-For $remote_addr;
+		proxy_set_header   Host $http_host;
+	}
+}
