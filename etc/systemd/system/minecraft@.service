@@ -1,0 +1,57 @@
+[Unit]
+Description=Minecraft Server (%I)
+Requires=network-online.target
+
+[Service]
+Type=simple
+
+User=minecraft
+WorkingDirectory=/srv/minecraft/%i/
+
+Sockets=minecraft@%i.socket
+StandardInput=socket
+StandardOutput=journal
+StandardError=journal
+
+ExecStart=/srv/minecraft/%i/start.sh
+# SIGINT is equivalent to executing /stop, so we don't need ExecStop
+ExecReload=/bin/bash -c 'echo "reload confirm" > %t/minecraft-%i.stdin'
+
+Restart=always
+
+Nice=-4
+
+# Security, it's a server after all
+CapabilityBoundingSet=
+NoNewPrivileges=yes
+PrivateUsers=yes
+PrivateTmp=yes
+PrivateDevices=yes
+DevicePolicy=closed
+ProtectSystem=strict
+ProtectHome=yes
+ProtectClock=yes
+ProtectControlGroups=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+RemoveIPC=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+TemporaryFileSystem=/srv:ro
+TemporaryFileSystem=/boot:ro
+TemporaryFileSystem=/opt:ro
+#TemporaryFileSystem=/run:ro  # Needed for systemd-resolved's resolve.conf, among others
+#TemporaryFileSystem=/etc:ro  # Needed for systemd-resolved's resolve.conf, among others
+TemporaryFileSystem=/media:ro
+TemporaryFileSystem=/mnt:ro
+TemporaryFileSystem=/var:ro
+TemporaryFileSystem=/snap:ro
+BindPaths=/srv/minecraft/%i/
+
+[Install]
+WantedBy=multi-user.target

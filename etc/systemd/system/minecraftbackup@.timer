@@ -1,0 +1,10 @@
+[Unit]
+Description=Create and Upload a daily backup for the minecraft %I server
+
+[Timer]
+OnCalendar=*-*-* 04:00:00
+Persistent=True
+RandomizedDelaySec=600
+
+[Install]
+WantedBy=timers.target
