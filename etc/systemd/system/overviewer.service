@@ -3,6 +3,6 @@ Description=Render the WHS Minecraft Map
 
 [Service]
 User=overviewer
-WorkingDirectory=/var/tmp/minecraft-overviewer/
-ExecStart=/var/tmp/minecraft-overviewer/render.sh
+WorkingDirectory=/srv/overviewer/
+ExecStart=/srv/overviewer/render.sh
 Type=simple
