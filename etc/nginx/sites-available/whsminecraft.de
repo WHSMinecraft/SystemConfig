@@ -27,8 +27,8 @@ server {
 	# Note: You should disable gzip for SSL traffic.
 	# See: https://bugs.debian.org/773332
 
-	ssl_certificate /etc/letsencrypt/live/*.whsminecraft.de/fullchain.pem; # managed by Certbot
-	ssl_certificate_key /etc/letsencrypt/live/*.whsminecraft.de/privkey.pem; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/whsminecraft.de/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/whsminecraft.de/privkey.pem; # managed by Certbot
 	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
 	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
