@@ -4,7 +4,8 @@ Description=Take an incremental backup of the %I server
 [Service]
 Type=oneshot
 
-User=backup
+User=minecraft
+Group=minecraft
 WorkingDirectory=/srv/minecraft/%i/
 
 #ExecStart=duplicity --no-encryption --archive-dir /srv/minecraft/%i/backupcache /srv/minecraft/%i/ b2://0002d508ec4b2ff0000000008:K000JC0ZapVfNlGNe0rSaQ33DTIumX0@whsminecraft-backups/%i
