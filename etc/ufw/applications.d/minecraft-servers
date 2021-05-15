@@ -1,0 +1,20 @@
+[Minecraft Survival]
+title=Minecraft Survival
+description=WHS Minecraft Server (Survival)
+ports=19132,25595/tcp|19132,25595/udp
+
+[Minecraft Creative]
+title=Minecraft Creative
+description=WHS Minecraft Server (Creative)
+ports=25575/tcp|25575/udp
+
+[Minecraft Parkour]
+title=Minecraft Parkour
+description=WHS Minecraft Server (Parkour)
+ports=25585/tcp|25585/udp
+
+[Minecraft Test]
+title=Minecraft Test
+description=WHS Minecraft Server (Test)
+ports=25500/tcp|25500/udp
+
