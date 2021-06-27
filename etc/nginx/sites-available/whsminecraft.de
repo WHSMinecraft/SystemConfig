@@ -45,4 +45,10 @@ server {
 		include /etc/nginx/fastcgi_params;
 		fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
 	}
+
+	location /api {
+		rewrite /api/(.*) /$1 break;
+		proxy_pass http://localhost:8081;
+		add_header Access-Control-Allow-Origin *;
+	}
 }
