@@ -44,4 +44,8 @@ server {
 		proxy_pass http://localhost:8081;
 		add_header Access-Control-Allow-Origin *;
 	}
+
+	location /server_network {
+		return 301 /server_list/;
+	}
 }
